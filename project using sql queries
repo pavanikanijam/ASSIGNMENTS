@@ -1,0 +1,117 @@
+-- creation of database
+CREATE DATABASE Inventory_Management;
+
+USE Inventory_Management;
+
+
+-- creation of manufacture table
+CREATE TABLE manufacture (
+    manufacture_id INT PRIMARY KEY,
+    product_name VARCHAR(50),
+    color VARCHAR(20),
+    quantity INT,
+    manufacture_date DATE,
+    defective_items INT
+);
+
+
+-- creation of goods table
+CREATE TABLE goods1 (
+    goods_id INT PRIMARY KEY,
+    product_name VARCHAR(50),
+    color VARCHAR(20),
+    quantity INT,
+    manufacture_date DATE,
+    company varchar(50)
+);
+
+
+-- creation of purchase table
+CREATE TABLE purchase1 (
+    purchase_id INT PRIMARY KEY,
+    product_name VARCHAR(50),
+    color VARCHAR(20),
+    quantity INT,
+    purchase_amount INT,
+    purchase_date DATE,
+    store_name varchar(50),
+    manufacture_date DATE
+
+);
+
+
+-- creation of sales table
+CREATE TABLE sale (
+    sale_id INT PRIMARY KEY,
+    product_name VARCHAR(50),
+    color VARCHAR(20),
+    quantity INT,
+    sale_amount INT,
+    sale_date DATE,
+
+);
+
+
+-- insert data into manufactures table
+INSERT INTO manufacture VALUES(101,'Toy', 'Red', 150, '2023-09-11', 5),
+  (102,'Wooden chair', 'Brown', 500, '2023-12-05', 2),
+  (103,'Teddy bear', 'Brown', 250, '2023-01-11', 0),
+  (104,'Toy car', 'Blue', 275, '2023-12-05', 5),
+  (105,'Red toy car', 'Red', 100, '2023-05-01', 2);
+
+select *from manufacture;
+
+-- insert data into goods1 table
+INSERT INTO goods1 values(201,'Toy', 'Red', 100, '2023-09-11','MyKids'),
+  (202,'Wooden chair', 'Brown', 50, '2023-12-05','pavani'),
+  (203,'Teddy bear', 'Brown', 25, '2023-01-11','sunil'),
+  (204,'Toy car', 'Blue', 75, '2023-12-05','naveen'),
+  (205,'Red toy car', 'Red', 100, '2023-05-01','somu');
+
+select *from goods1;
+  
+
+
+-- insert data into purchase1 table
+  INSERT INTO purchase1 values(301,'Toy', 'Red', 10,150, '2023-09-11','ORay','2023-09-01'),
+  (302,'Wooden chair', 'Brown', 50,200, '2023-12-05','sunil','2023-06-02'),
+  (303,'Teddy bear', 'Brown', 15,420, '2023-01-11','onlline','2023-05-01'),
+  (304,'Toy car', 'Blue', 25,250, '2023-12-05','offline','2023-04-11'),
+  (305,'Red toy car', 'Red', 150,200, '2023-05-01','online','2023-09-12');
+
+select *from purchase1;
+
+
+-- insert data into sale table
+INSERT INTO sale values(401,'Toy', 'Red', 20,100, '2023-09-11'),
+  (402,'Wooden chair', 'Brown', 60,300, '2023-12-05'),
+  (403,'Teddy bear', 'Brown', 35,200, '2023-01-11'),
+  (404,'Toy car', 'Blue', 45,450, '2023-12-05'),
+  (405,'Red toy car', 'Red', 100,500, '2023-05-01');
+   
+select *from sale;
+  
+
+
+-- Delete the defective item, e.g., the shirt which was accidentally purchased by the “ORay” store, manufactured on the date ‘01-04-23’.
+DELETE FROM purchase1 WHERE product_name = 'Shirt' AND store_name = 'ORay' AND manufacture_date = '2023-04-01';
+
+
+-- Update the manufacture details of all the red-colored toys which are purchased by the “MyKids” store.
+UPDATE manufacture
+SET defective_items = 10
+WHERE product_name = 'Red Toy Car' AND manufacture_id IN (
+  SELECT manufacture_id
+  FROM goods1
+  WHERE company = 'MyKids' AND product_name = 'Red Toy Car'
+);
+
+
+
+-- Display all the “wooden chair” items that were manufactured before the 1st May 2023. 
+SELECT * FROM goods1 WHERE product_name = 'Wooden Chair' AND manufacture_date < '2023-05-01';
+
+
+
+-- Display the profit margin amount of the “wooden table” that was sold by the “MyCare” store, manufactured by the “SS Export” company.
+SELECT (sale_amount - purchase_amount) AS profit_margin FROM sale JOIN goods1 ON sale.goods_id = goods1.goods_id WHERE goods1.product_name = 'Wooden Table' AND goods1.company = 'MyCare' AND goods1.manufacture_name = 'SS Export' ;
