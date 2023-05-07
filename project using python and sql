@@ -1,0 +1,97 @@
+import mysql.connector
+mydb = mysql.connector.connect(host="localhost", user="yourusername", password="yourpassword",database="Inventory_Management")
+mycursor = mydb.cursor()
+
+
+# creation of table "manufacture"
+mycursor.execute("CREATE TABLE manufacture (manufacture_id INT PRIMARY KEY, product_name VARCHAR(50),color VARCHAR(20), quantity INT,manufacture_date DATE, defective_items INT)")
+
+
+# create table "goods1"
+mycursor.execute("CREATE TABLE goods1(goods_id INT PRIMARY KEY,product_name VARCHAR(50), color VARCHAR(20),quantity INT, manufacture_date DATE,company varchar(50))")
+
+
+# create table "purchase1"
+mycursor.execute("CREATE TABLE purchase ( purchase_id INT PRIMARY KEY,product_name VARCHAR(50),color VARCHAR(20), quantity INT, purchase_amount INT,purchase_date DATE,store_name varchar(50),manufacture_date DATE)")
+
+
+# create table "sale"
+mycursor.execute("CREATE TABLE sale (sale_id INT PRIMARY KEY,product_name VARCHAR(50),color VARCHAR(20), quantity INT,sale_amount INT, sale_date DATE,)")
+
+
+
+
+# Inserting data into manufacture table
+
+sql = "INSERT INTO manufacture (product_id,product_name, color, quantity, manufacture_date, defective_items) VALUES (%s, %s, %s, %s, %s, %s)"
+val = [(101,'Toy', 'Red', 150, '2023-09-11', 5),(102,'Wooden chair', 'Brown', 500, '2023-12-05', 2),(103,'Teddy bear', 'Brown', 250, '2023-01-11', 0), (104,'Toy car', 'Blue', 275, '2023-12-05', 5),(105,'Red toy car', 'Red', 100, '2023-05-01', 2)]
+mycursor.executemany(sql, val)
+mydb.commit()
+
+
+
+# Inserting data into goods1 table
+sql = "INSERT INTO goods1 (goods_id,product_name, color, quantity, manufacture_date,company) VALUES (%s, %s, %s, %s, %s,%s)"
+val = [(201,'Toy', 'Red', 100, '2023-09-11','MyKids'),(202,'Wooden chair', 'Brown', 50, '2023-12-05','pavani'),(203,'Teddy bear', 'Brown', 25, '2023-01-11','sunil'),(204,'Toy car', 'Blue', 75, '2023-12-05','naveen'),(205,'Red toy car', 'Red', 100, '2023-05-01','somu')]
+mycursor.executemany(sql, val)
+mydb.commit()
+
+
+
+# Inserting data into purchase table
+sql = "INSERT INTO purchase1 (purchase_id, product_name,color, quantity,purchase_amount,purchase_date,store_name,manufacture_date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+val = [(301,'Toy', 'Red', 10,150, '2023-09-11','ORay','2023-09-01'),(302,'Wooden chair', 'Brown', 50,200, '2023-12-05','sunil','2023-06-02'),(303,'Teddy bear', 'Brown', 15,420, '2023-01-11','onlline','2023-05-01'), (304,'Toy car', 'Blue', 25,250, '2023-12-05','offline','2023-04-11'), (305,'Red toy car', 'Red', 150,200, '2023-05-01','online','2023-09-12')]
+
+
+#Inserting data into sales table
+sql="INSERT INTO sale (sale_id ,product_name ,color ,quantity ,sale_amount ,sale_date) VALUES (%s, %s, %s, %s, %s, %s)"
+val=[ (401,'Toy', 'Red', 20,100, '2023-09-11'),(402,'Wooden chair', 'Brown', 60,300, '2023-12-05'), (403,'Teddy bear', 'Brown', 35,200,'2023-01-11'),(404,'Toy car', 'Blue', 45,450, '2023-12-05'), (405,'Red toy car', 'Red', 100,500, '2023-05-01')]
+   
+  
+
+
+# Delete the defective item from the purchase table
+defective_item = "DELETE FROM purchase1 WHERE product_name = 'Shirt' AND store-name = 'ORay' AND manufacture_date = '2023-04-01'"
+cursor.execute(defective_item)
+db.commit()
+
+
+
+
+# Update the manufacture details of red-colored toys purchased by "MyKids" store
+manufacture_details = "UPDATE manufacture SET quantity = 500 WHERE product_name = 'Toy' AND color = 'Red' AND manufacture_id IN (SELECT manufacture_id FROM goods1 WHERE company = 'MyKids')"
+cursor.execute(manufacture_details)
+db.commit()
+
+
+
+
+# Display all the wooden chairs manufactured before 1st May 2023
+wooden_chairs = "SELECT * FROM goods WHERE product_name = 'Wooden Chair' AND manufacture_date < '2023-05-01'"
+cursor.execute(wooden_chairs)
+result = cursor.fetchall()
+for row in result:
+    print(row)
+
+
+
+# Display the profit margin amount of the wooden table sold by "MyCare" store, manufactured by "SS Export" company
+profit = "SELECT (sale_amount - purchase_amount) AS profit_margin FROM sale JOIN goods1 ON sale.goods_id = goods1.goods_id WHERE goods1.product_name = 'Wooden Table' AND goods1.store_name = 'MyCare' AND goods1.manufacture_name = 'SS Export'"
+cursor.execute(profit)
+result = cursor.fetchone()
+print("Profit margin of the wooden table sold by MyCare store, manufactured by SS Export company:", result[0])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
