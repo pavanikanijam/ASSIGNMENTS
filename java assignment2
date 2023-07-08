@@ -1,0 +1,120 @@
+import java.util.Scanner;
+class Driver {
+    private String name;
+    private String carModel;
+    private double rating;
+    private double distanceFromCustomer;
+    public Driver(String name, String carModel, double rating, double distanceFromCustomer) {
+        this.name = name;
+        this.carModel = carModel;
+        this.rating = rating;
+        this.distanceFromCustomer = distanceFromCustomer;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getCarModel() {
+        return carModel;
+    }
+    public void setCarModel(String carModel) {
+        this.carModel = carModel;
+    }
+    public double getRating() {
+        return rating;
+    }
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+    public double getDistanceFromCustomer() {
+        return distanceFromCustomer;
+    }
+    public void setDistanceFromCustomer(double distanceFromCustomer) {
+        this.distanceFromCustomer = distanceFromCustomer;
+    }
+    @Override
+    public String toString() {
+        return "Driver{" +
+                "name='" + name + '\'' +
+                ", carModel='" + carModel + '\'' +
+                ", rating=" + rating +
+                ", distanceFromCustomer=" + distanceFromCustomer +
+                '}';
+    }
+}
+class Customer {
+    private String name;
+    private double rideDistance;
+    private String carRequested;
+    public Customer(String name, double rideDistance, String carRequested) {
+        this.name = name;
+        this.rideDistance = rideDistance;
+        this.carRequested = carRequested;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public double getRideDistance() {
+        return rideDistance;
+    }
+    public void setRideDistance(double rideDistance) {
+        this.rideDistance = rideDistance;
+    }
+    public String getCarRequested() {
+        return carRequested;
+    }
+    public void setCarRequested(String carRequested) {
+        this.carRequested = carRequested;
+    }
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "name='" + name + '\'' +
+                ", rideDistance=" + rideDistance +
+                ", carRequested='" + carRequested + '\'' +
+                '}';
+    }
+}
+public class RideSharingApp {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int numberOfDrivers = scanner.nextInt();
+        Driver[] drivers = new Driver[numberOfDrivers];
+        for (int i = 0; i < numberOfDrivers; i++) {
+            String name = scanner.next();
+            String carModel = scanner.next();
+            double rating = scanner.nextDouble();
+            double distanceFromCustomer = scanner.nextDouble();
+            Driver driver = new Driver(name, carModel, rating, distanceFromCustomer);
+            drivers[i] = driver;
+        }
+        String customerName = scanner.next();
+        double rideDistance = scanner.nextDouble();
+        String carRequested = scanner.next();
+        Customer customer = new Customer(customerName, rideDistance, carRequested);
+        Driver bestDriver = findBestDriver(drivers, customer);
+        System.out.println(bestDriver.getName());
+        double charge = calculateCharge(rideDistance);
+        System.out.println("Your charge will be Rs " + charge);
+    }
+    private static Driver findBestDriver(Driver[] drivers, Customer customer) {
+        Driver bestDriver = null;
+        for (Driver driver : drivers) {
+            if (driver.getCarRequested().equals(customer.getCarRequested())) {
+                if (driver.getDistanceFromCustomer() < bestDriver.getDistanceFromCustomer()) {
+                    bestDriver = driver;
+                }
+            }
+        }
+        return bestDriver;
+    }
+    private static double calculateCharge(double rideDistance) {
+      
+        return rideDistance * 10;
+    }
+}
