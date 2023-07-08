@@ -1,0 +1,109 @@
+import java.util.ArrayList;
+public class CarDealership {
+    public static void main(String[] args) {
+        CarDealer carDealer = new CarDealer();
+        carDealer.addCarModel(new Car("Virtus Highline", 1308000));
+        carDealer.addCarModel(new Car("Taigun Topline", 1771000));
+        carDealer.addCarModel(new Car("Polo Trendline", 870000));
+        Customer customer = new Customer();
+        customer.setCarModel("Virtus Highline");
+        customer.setInsurance(true);
+        customer.setAdditionalAccessories(false);
+        customer.setDealerDiscount(2);
+        Billing billing = new Billing(customer, carDealer);
+        int totalCost = billing.calculateTotalCost();
+        System.out.println("Total cost: " + totalCost);
+    }
+}
+class Car {
+    private String carModel;
+    private int showroomPrice;
+    public Car(String carModel, int showroomPrice) {
+        this.carModel = carModel;
+        this.showroomPrice = showroomPrice;
+    }
+    public String getCarModel() {
+        return carModel;
+    }
+    public int getShowroomPrice() {
+        return showroomPrice;
+    }
+}
+class CarDealer {
+    private ArrayList<Car> carModels;
+    public CarDealer() {
+        this.carModels = new ArrayList<>();
+    }
+    public void addCarModel(Car carModel) {
+        this.carModels.add(carModel);
+    }
+    public ArrayList<Car> getCarModels() {
+        return this.carModels;
+    }
+    public Car getCarModelByModelName(String carModelName) {
+        for (Car carModel : this.carModels) {
+            if (carModel.getCarModel().equals(carModelName)) {
+                return carModel;
+            }
+        }
+        return null;
+    }
+}
+class Customer {
+    private String carModel;
+    private boolean insurance;
+    private boolean additionalAccessories;
+    private int dealerDiscount;
+    public Customer() {
+        this.carModel = "";
+        this.insurance = false;
+        this.additionalAccessories = false;
+        this.dealerDiscount = 0;
+    }
+    public String getCarModel() {
+        return carModel;
+    }
+    public void setCarModel(String carModel) {
+        this.carModel = carModel;
+    }
+    public boolean isInsurance() {
+        return insurance;
+    }
+    public void setInsurance(boolean insurance) {
+        this.insurance = insurance;
+    }
+    public boolean isAdditionalAccessories() {
+        return additionalAccessories;
+    }
+    public void setAdditionalAccessories(boolean additionalAccessories) {
+        this.additionalAccessories = additionalAccessories;
+    }
+    public int getDealerDiscount() {
+        return dealerDiscount;
+    }
+    public void setDealerDiscount(int dealerDiscount) {
+        this.dealerDiscount = dealerDiscount;
+    }
+}
+class Billing {
+    private Customer customer;
+    private CarDealer carDealer;
+    public Billing(Customer customer, CarDealer carDealer) {
+        this.customer = customer;
+        this.carDealer = carDealer;
+    }
+    public int calculateTotalCost() {
+        int totalCost = 0;
+        Car carModel = carDealer.getCarModelByModelName(customer.getCarModel());
+        totalCost += carModel.getShowroomPrice();
+        totalCost += 113990; // RTO
+        totalCost += 11000; // TCS
+        if (customer.isInsurance()) {
+            totalCost += 47300; // Insurance
+        }
+        if (customer.isAdditionalAccessories()) {
+            totalCost += 15000; //Additional accessories
+        }
+        totalCost -= customer.getDealerDiscount();
+        return totalCost;
+    }
