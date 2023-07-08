@@ -1,0 +1,79 @@
+
+import java.util.Scanner;
+public class CarDealer {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Car Model Cost(Showroom price)");
+        System.out.println("Polo Trendline 8.70 lakh");
+        System.out.println("Polo Highline 10.09 lakh");
+        System.out.println("Virtus Trendline 11.05 lakh");
+        System.out.println("Virtus Highline 13.08 lakh");
+        System.out.println("Taigun Trendline 14.89 lakh");
+        System.out.println("Taigun Highline 15.42 lakh");
+        System.out.println("Taigun Topline 17.71 lakh");
+        System.out.println("Enter the car model selected:");
+        String carModel = scanner.nextLine();
+        System.out.println("Do you want to opt for insurance? (Y/N)");
+        String insurance = scanner.nextLine();
+        System.out.println("Do you want to opt for additional accessories? (Y/N)");
+        String accessories = scanner.nextLine();
+        int showroomPrice = getShowroomPrice(carModel);
+        int rto = 113990;
+        int insurancePrice = getInsurancePrice(insurance);
+        int accessoriesPrice = getAccessoriesPrice(accessories);
+        int tcs = 11000;
+        int discount = getDiscount(scanner);
+        int totalAmount = showroomPrice + rto + insurancePrice + accessoriesPrice + tcs - discount;
+        System.out.println("The total amount to be paid is " + totalAmount);
+    }
+    private static int getShowroomPrice(String carModel) {
+        switch (carModel) {
+            case "Polo Trendline":
+                return 870000;
+            case "Polo Highline":
+                return 1009000;
+            case "Virtus Trendline":
+                return 1105000;
+            case "Virtus Highline":
+                return 1308000;
+            case "Taigun Trendline":
+                return 1489000;
+            case "Taigun Highline":
+                return 1542000;
+            case "Taigun Topline":
+                return 1771000;
+            default:
+                return 0;
+        }
+    }
+    private static int getInsurancePrice(String insurance) {
+        if (insurance.equals("Y")) {
+            return 47300;
+        } else {
+            return 0;
+        }
+    }
+    private static int getAccessoriesPrice(String accessories) {
+        if (accessories.equals("Y")) {
+            return 15000;
+        } else {
+            return 0;
+        }
+    }
+    private static int getDiscount(Scanner scanner) {
+        System.out.println("Do you want to apply a discount? (Y/N)");
+        String discount = scanner.nextLine();
+        if (discount.equals("Y")) {
+            System.out.println("Enter the discount amount in rupees:");
+            int discountAmount = scanner.nextInt();
+            if (discountAmount > 30000) {
+                System.out.println("The maximum discount allowed is 30000.");
+                return 30000;
+            } else {
+                return discountAmount;
+            }
+        } else {
+            return 0;
+        }
+    }
+}
