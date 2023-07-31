@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Nature</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='abc.css'>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+              </nav>
+        </header>
+        <article class="main">
+    
+                <p>This is the main content area. It has a minimum height of 400 pixels and displays its content in a column.</p>
+        </article>
+        <aside  class="aside aside1">
+            <h1>Aside1</h1>
+        </aside>
+        <aside class="aside aside2">
+            <h1>Aside2</h1>
+        </aside>
+        <div class="container">
+            <img src="fall-autumn-red-season.jpg" alt="Image">
+            <p class="bottom-left">It provides the humans, animals and all the living beings on the earth a place to live with the joy of natural resources. Nature is the mother of all, as it helps to sustain our life. It is our companion since eternity. Despite the importance of nature in human life, we are spoiling its balance only due to our greediness.
+                .</p>
+            <p class="centered">Nature, in the broadest sense, is the physical world or universe. "Nature" can refer to the phenomena of the physical world, and also to life in general. The study of nature is a large, if not the only, part of science. Although humans are part of nature, human activity is often understood as a separate category from other natural phenomena.</p>
+          </div>
+        
+        <footer class="footer">
+            <h1>love nature and protect nature</h1>
+        </footer>
+        </div>
+        <div class="image-gallery">
+            <div class="thumbnail">
+              <img src="pexels-photo-9201716.jpg" alt="Image 1">
+            </div>
+            <div class="thumbnail">
+              <img src="pexels-photo-10844877.jpg.png" alt="Image 2">
+            </div>
+            <div class="thumbnail">
+              <img src="GettyImages-1093840488-5.jpg" alt="Image 3">
+            </div>
+        </div>
+          
+    
+    
+ </body>  
+    
+</html>
+
+
+
+
+
+
+///////////////////////////////////////////////
+abc.css
+//////////////////////////////////////////////
+.wrapper {
+    display:flex;
+    flex-flow:row wrap;
+    text-align:center;
+}
+.wrapper>*{
+    padding:10px;
+    margin:10px;
+    flex:1 100%;
+    border-radius:10px;
+}
+.header{
+    background: tomato;
+    height:80px;
+}
+.footer{
+    background-color: lightgreen;
+    height:60px;
+
+
+
+}
+.container {
+    position: relative;
+    width: 400px; /* Set the width of the container as needed */
+    height: 300px; /* Set the height of the container as needed */
+    border: 1px solid #ccc; /* Optional: Add a border to the container for visualization */
+    margin: 50px auto; /* Optional: Center the container on the page */
+    padding: 10px; /* Optional: Add some padding to the container */
+  }
+  
+  img {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    margin: 0;
+    width:100px;
+    height:100px;
+  }
+  
+  p.bottom-left {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    margin: 0;
+  }
+  
+  p.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+  }
+  
+  
+  /* Task 4: Fixed Navigation Bar */
+  header.fixed-header {
+    height: 10%;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    background-color: blue;
+    position:sticky ;
+    top: 0;
+    left: 0; /* Ensures the header stays above other elements */
+  }
+  
+  .fixed-header ul {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .fixed-header li {
+    cursor: pointer;
+  }
+  .image-gallery {
+    display: flex;
+    width: 90%;
+    padding:20px;
+    margin:100px auto;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .thumbnail {
+    width: 250px;
+    height: 10px;
+    margin:0  10px;
+    box-shadow: 0 0 20px 2px rgba(0,0,0,.1);
+
+    transition: transform 0.3s ease;
+  }
+  
+  .thumbnail img {
+    margin-top:1100px;
+    width: 100px;
+    height: 10px;
+    object-fit: cover;
+    display: block;
+    border-radius: 5px;
+  }
+  
+  .thumbnail:hover {
+    transform: scale(1.2);
+    z-index: 2;
+  }
+  
+.main{
+    text-align:left;
+    background: deepskyblue;
+    height: 400px;
+    font-size: 24px;
+}
+.aside1{
+    background:gold ;
+    
+
+
+}
+.aside2{
+    background: hotpink;
+}
+@media all and (min-width:800px){
+    .main{
+        flex:3;
+
+    }
+    .aside1{
+        order:1;
+
+    }
+    .aside2{
+        order:2;
+    }
+    .main{
+        order:2;
+        width: 40%;
+    }
+    .footer{
+        order:4;
+    }
+}
+@media all and (min-width:600px){
+    .aside {
+        flex:1;
+    }
+}
+.image-gallery {
+    display: flex;
+  }
+  
+  .thumbnail {
+    width: 10px;
+    height: 10px;
+    margin: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  
+  .thumbnail img {
+    width: 20%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .thumbnail:hover {
+    transform: scale(1.2);
+  }
+  
+
