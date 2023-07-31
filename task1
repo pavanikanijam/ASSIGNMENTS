@@ -1,0 +1,441 @@
+////////////////////////////////
+task1.html
+///////////////////////////////
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexbox Layout</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <p>Nature, in the broadest sense, is the physical world or universe. "Nature" can refer to the phenomena of the physical world, and also to life in general. The study of nature is a large, if not the only, part of science. Although humans are part of nature, human activity is often understood as a separate category from other natural phenomena.</p>
+  </main>
+
+  <footer>
+    <p>love nature and protect nature.</p>
+  </footer>
+</body>
+</html>
+
+
+////////////////////////////////
+main.css
+///////////////////////////////
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  height: 80px;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav li {
+  padding: 0 10px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+}
+
+main {
+  min-height: 400px;
+  padding: 20px;
+}
+
+footer {
+  height: 60px;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+//////////////////////////
+/////////////////////////
+TASK2
+////////////////////////
+///////////////////////
+task2.html
+///////////
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexbox Layout</title>
+  <link rel="stylesheet" href="main1.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="box red"></div>
+    <div class="box green"></div>
+    <div class="box blue"></div>
+  </main>
+
+  <footer>
+    <p>© 2023 Your Website. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+
+///////////////////////
+main1.css
+/////////////////////
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  height: 80px;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav li {
+  padding: 0 10px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+}
+
+main {
+  min-height: 400px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.box {
+  flex: 1;
+  min-width: 200px;
+  height: 200px;
+}
+
+.red {
+  background-color: lightblue;
+}
+
+.green {
+  background-color: lightcoral;
+}
+
+.blue {
+  background-color: lightgreen;
+}
+
+footer {
+  height: 60px;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+//////////////////////////////////
+/////////////////////////////////
+task3
+////////////////////////////////
+///////////////////////////////
+task3.html
+/////////////////////////////
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Positioning Elements</title>
+  <link rel="stylesheet" href="main2.css">
+</head>
+<body>
+  <div class="container">
+    <img src="fall-autumn-red-season.jpg" alt="Image">
+    <p class="bottom-left"> Despite the importance of nature in human life, we are spoiling its balance only due to our greediness.
+        .</p>
+    <p class="centered">  The study of nature is a large, if not the only, part of science. Although humans are part of nature, human activity is often understood as a separate category from other natural phenomena.</p>
+  </div>
+  </div>
+</body>
+</html>
+
+
+//////////////////////
+main2.css
+/////////////////////
+.container {
+  position: relative;
+  width: 400px; /* Set the width of the container as needed */
+  height: 300px; /* Set the height of the container as needed */
+  border: 1px solid #ccc; /* Optional: Add a border to the container for visualization */
+  margin: 50px auto; /* Optional: Center the container on the page */
+  padding: 10px; /* Optional: Add some padding to the container */
+}
+
+img {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  margin: 0;
+  width:100px;
+  height:100px;
+}
+
+p.bottom-left {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  margin: 0;
+}
+
+p.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+}
+
+
+/* Task 4: Fixed Navigation Bar */
+header.fixed-header {
+  height: 10%;
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  background-color: blue;
+  position:sticky ;
+  top: 0;
+  left: 0; /* Ensures the header stays above other elements */
+}
+
+.fixed-header ul {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.fixed-header li {
+  cursor: pointer;
+}
+
+
+
+////////////////////////////
+///////////////////////////
+TASK4
+//////////////////////////
+/////////////////////////
+task4.html
+////////////////////////
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fixed Navigation Bar</title>
+  <link rel="stylesheet" href="main3.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Your page content goes here -->
+  </main>
+</body>
+</html>
+
+
+
+//////////////////////////////
+main3.css
+/////////////////////////////
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+}
+
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  margin: 0;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #fff;
+  padding: 8px 16px;
+}
+
+.navbar a:hover {
+  background-color: #555;
+}
+
+
+////////////////////////////////////////
+///////////////////////////////////////
+TASK5
+/////////////////////////////////////
+////////////////////////////////////
+task5.html
+//////////////////////////////////
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fixed Navigation Bar</title>
+  <link rel="stylesheet" href="main4.css">
+</head>
+<body>
+  <div class="image-gallery">
+    <div class="thumbnail">
+      <img src="pexels-photo-9201716.jpg" alt="Image 1">
+    </div>
+    <div class="thumbnail">
+      <img src="pexels-photo-10844877.jpg.png" alt="Image 2">
+    </div>
+    <div class="thumbnail">
+      <img src="GettyImages-1093840488-5.jpg" alt="Image 3">
+    </div>
+</div>
+  
+
+  <main>
+    <!-- Your page content goes here -->
+  </main>
+</body>
+</html>
+
+
+/////////////////////////
+main4.css
+////////////////////////
+.image-gallery {
+  display: flex;
+  width: 90%;
+  padding:20px;
+  margin:100px auto;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.thumbnail {
+  width: 250px;
+  height: 10px;
+  margin:0  10px;
+  box-shadow: 0 0 20px 2px rgba(0,0,0,.1);
+
+  transition: transform 0.3s ease;
+}
+
+.thumbnail img {
+  margin-top:1100px;
+  width: 100px;
+  height: 10px;
+  object-fit: cover;
+  display: block;
+  border-radius: 5px;
+}
+
+.thumbnail:hover {
+  transform: scale(1.2);
+  z-index: 2;
+}
+
+
